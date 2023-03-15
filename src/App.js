@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [job, setJob] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [value,setValue] = useState(0)
+  useEffect(() => {
+    setLoading(true);
+     axios("https://course-api.com/react-tabs-project")
+      .then(res => setJob(res.data))
+      .finally(() => setLoading(false));
+    ;
+  }, []);
+    
+  
+  
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading && <h1>LOADING...</h1> }
+      <div className="container">
+        <div className="btn-container"></div>
+        <div className="info-container">
+          <h3>{job[value]?.title}</h3>
+        </div>
+      </div>
+    </>
   );
 }
 
