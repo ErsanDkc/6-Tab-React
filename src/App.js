@@ -22,9 +22,19 @@ function App() {
     <>
       {loading && <h1>LOADING...</h1> }
       <div className="container">
-        <div className="btn-container"></div>
+        <div className="btn-container">
+          {job?.map((company,index) => {
+            return <button key={index}>{company.company}</button>
+          })}
+        </div>
         <div className="info-container">
           <h3>{job[value]?.title}</h3>
+          <h5>{job[value]?.company}</h5>
+          <h6>{job[value]?.dates}</h6>
+          {job[value]?.duties.map((duty,index) =>  {
+            return <p key={index}>{duty}</p>
+          })}
+
         </div>
       </div>
     </>
