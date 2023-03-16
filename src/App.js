@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
+import { FaAngleDoubleRight } from "react-icons/fa"
 
 function App() {
   const [job, setJob] = useState([]);
@@ -26,17 +27,19 @@ function App() {
   
   }, []);
     
-  
+  const change = () =>  {
+    
+  }
   
   
   
   return (
-    <>
+    <main>
       {loading && <h1>LOADING...</h1> }
       <div className="container">
         <div className="btn-container">
           {job?.map((company,index) => {
-            return <button key={index}>{company.company}</button>
+            return <button onClick={change} key={index}>{company.company}</button>
           })}
         </div>
         <div className="info-container">
@@ -44,12 +47,12 @@ function App() {
           <h5>{job[value]?.company}</h5>
           <h6>{job[value]?.dates}</h6>
           {job[value]?.duties.map((duty,index) =>  {
-            return <p key={index}>{duty}</p>
+            return <p className="info" key={index}><span><FaAngleDoubleRight className="icon"/></span>{duty}</p>
           })}
 
         </div>
       </div>
-    </>
+    </main>
   );
 }
 
