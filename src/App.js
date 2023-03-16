@@ -6,12 +6,24 @@ function App() {
   const [job, setJob] = useState([]);
   const [loading, setLoading] = useState(true);
   const [value,setValue] = useState(0)
+  const getData = async() => {
+    try {
+      setLoading(true);
+      const res = await axios("https://course-api.com/react-tabs-project")
+      setJob(res.data)
+     }
+     catch(e) {
+      console.log(e.message)
+     }
+     finally {
+      setLoading(false);
+     }
+  }
+  
   useEffect(() => {
-    setLoading(true);
-     axios("https://course-api.com/react-tabs-project")
-      .then(res => setJob(res.data))
-      .finally(() => setLoading(false));
-    ;
+    
+    getData()
+  
   }, []);
     
   
