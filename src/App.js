@@ -27,9 +27,7 @@ function App() {
   
   }, []);
     
-  const change = () =>  {
-    
-  }
+  
   
   
   
@@ -39,7 +37,7 @@ function App() {
       <div className="container">
         <div className="btn-container">
           {job?.map((company,index) => {
-            return <button onClick={change} key={index}>{company.company}</button>
+            return <button onClick={() => setValue(index)} key={index}>{company.company}</button>
           })}
         </div>
         <div className="info-container">
